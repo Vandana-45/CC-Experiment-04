@@ -75,7 +75,7 @@ kubectl get nodes -o wide
 
 The cluster contained one control-plane node and two worker nodes, all in the `Ready` state.
 
-!\[Kubernetes cluster nodes](screenshots/01-cluster-nodes.png)
+![Kubernetes cluster nodes](screenshots/01-cluster-nodes.png)
 
 ### 2\. Check existing pods
 
@@ -85,7 +85,7 @@ kubectl get pods -o wide
 
 This command displays pod status, IP addresses, and the nodes on which pods are scheduled.
 
-!\[Pod scheduling](screenshots/02-pod-scheduling.png)
+![Pod scheduling](screenshots/02-pod-scheduling.png)
 
 ### 3\. Inspect node resource allocation
 
@@ -96,9 +96,9 @@ kubectl describe node kind-worker2
 
 Review the **Allocated resources** section for CPU and memory requests and limits.
 
-!\[Worker 1 resource allocation](screenshots/03-resource-allocation-worker1.png)
+![Worker 1 resource allocation](screenshots/03-resource-allocation-worker1.png)
 
-!\[Worker 2 resource allocation](screenshots/04-resource-allocation-worker2.png)
+![Worker 2 resource allocation](screenshots/04-resource-allocation-worker2.png)
 
 ### 4\. Apply the Nginx Deployment
 
@@ -109,7 +109,7 @@ kubectl get pods -o wide
 
 The Deployment initially created 6 Nginx replicas. The application pods were scheduled across the two worker nodes. The control-plane node was not used for these pods because it had a `NoSchedule` taint.
 
-!\[Deployment with six replicas](screenshots/05-deployment-6-replicas.png)
+![Deployment with six replicas](screenshots/05-deployment-6-replicas.png)
 
 ### 5\. Scale the Deployment to 12 replicas
 
@@ -120,7 +120,7 @@ kubectl get pods -o wide
 
 The Deployment was scaled from 6 to 12 replicas. In the experiment, all 12 application pods reached the `Running` state and were distributed across the two worker nodes.
 
-!\[Deployment scaled to twelve replicas](screenshots/06-deployment-12-replicas.png)
+![Deployment scaled to twelve replicas](screenshots/06-deployment-12-replicas.png)
 
 ### 6\. Create and inspect the Service
 
@@ -133,7 +133,7 @@ kubectl get endpointslices
 
 The Service was configured as `NodePort`, using service port `80`, target port `80`, and node port `30080`. Its endpoints corresponded to the 12 application pods.
 
-!\[Service and endpoints](screenshots/07-service-endpoints.png)
+![Service and endpoints](screenshots/07-service-endpoints.png)
 
 ### 7\. Access the Nginx application
 
@@ -145,7 +145,7 @@ kubectl port-forward service/nginx-service 8080:80
 
 Keep the port-forward process running and open `http://localhost:8080` in a browser. The Nginx Welcome page was displayed successfully. In this Kind-on-Windows setup, the application was tested using port forwarding.
 
-!\[Nginx Welcome page](screenshots/08-nginx-welcome-page.png)
+![Nginx Welcome page](screenshots/08-nginx-welcome-page.png)
 
 ### 8\. Monitor node and pod resource usage
 
@@ -166,9 +166,9 @@ Observed node metrics during the experiment:
 
 At the time of measurement, each of the 12 `resource-demo` pods showed approximately `0m` CPU and `10Mi` memory.
 
-!\[Node resource monitoring](screenshots/09-node-resource-monitoring.png)
+![Node resource monitoring](screenshots/09-node-resource-monitoring.png)
 
-!\[Pod resource monitoring](screenshots/10-pod-resource-monitoring.png)
+![Pod resource monitoring](screenshots/10-pod-resource-monitoring.png)
 
 ## Graphs
 
@@ -176,7 +176,7 @@ At the time of measurement, each of the 12 `resource-demo` pods showed approxima
 
 The replica count increased from 6 to 12.
 
-!\[Kubernetes deployment scaling graph](screenshots/deployment-scaling.png)
+![Kubernetes deployment scaling graph](screenshots/deployment-scaling.png)
 
 ### Aggregate resource configuration for 12 replicas
 
@@ -187,7 +187,7 @@ For 12 replicas, aggregate configured requests and limits are:
 |CPU|1200m|2400m|
 |Memory|768Mi|1536Mi|
 
-!\[Aggregate CPU and memory configuration graph](screenshots/resource-allocation.png)
+![Aggregate CPU and memory configuration graph](screenshots/resource-allocation.png)
 
 *These graphs show configured replica counts and resource requests/limits. They are not measured utilization graphs.*
 
@@ -221,5 +221,14 @@ The experiment demonstrated Kubernetes resource allocation, pod scheduling, Depl
 ## Author
 
 **Vandana A M**
+
+
+
+
+
+
+
+
+
 
 
